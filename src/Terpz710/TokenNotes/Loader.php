@@ -36,7 +36,7 @@ class Loader extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $item = $event->getItem();
         
-        if ($item->getTypeId() === VanillaItems::PAPER && $item->getCustomName() && strpos($item->getCustomName(), "Bank Note $") !== false) {
+        if ($item->getTypeId() === VanillaItems::PAPER() && $item->getCustomName() && strpos($item->getCustomName(), "Bank Note $") !== false) {
             $lore = $item->getLore();
             if ($lore !== null && preg_match('/^Value: \$([\d]+)$/', $lore[0], $matches)) {
                 $value = (int) $matches[1];
