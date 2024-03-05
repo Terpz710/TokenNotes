@@ -52,7 +52,7 @@ class TokenNoteCommand extends Command {
         $bankNote->setCustomName("Bank Note $" . $value);
         $nbt = new CompoundTag("", [
             "BankNote" => new CompoundTag("BankNote", [
-                "Value" => new IntTag("Value", $value)
+                "Value" => new IntTag("Value", (int)$value)
             ])
         ]);
         $bankNote->setNamedTag($nbt);
