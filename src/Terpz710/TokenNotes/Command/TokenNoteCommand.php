@@ -15,7 +15,7 @@ use pocketmine\nbt\tag\IntTag;
 class TokenNoteCommand extends Command {
 
     public function __construct() {
-        parent::__construct("banknote", "Create a bank note with a specified value", "/banknote <amount>");
+        parent::__construct("tokennote", "Create a bank note with a specified value", "/banknote <amount>");
         $this->setPermission("tokennotes.cmd");
     }
 
