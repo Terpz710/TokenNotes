@@ -19,7 +19,7 @@ class Loader extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getCommandMap()->register("tokennote", new TokenNoteCommand($this));
+        $this->getServer()->getCommandMap()->register("tokennote", new TokenNoteCommand());
         
         $tokensPlugin = $this->getServer()->getPluginManager()->getPlugin("TokensAPI");
         if ($tokensPlugin instanceof Tokens) {
