@@ -1,0 +1,11 @@
+name: TokenNotes
+version: 1.0.0
+author: Terpz710
+api: 5.0.0
+main: Terpz710\TokenNotes\Loader
+description: Adds token notes(bank notes) to your PM server!
+
+permissions:
+  tokennotes.cmd:
+    default: true
+    description: Allows the players to obtain token notes.
