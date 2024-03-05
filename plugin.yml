@@ -5,6 +5,8 @@ api: 5.0.0
 main: Terpz710\TokenNotes\Loader
 description: Adds token notes(bank notes) to your PM server!
 
+depend: TokensAPI
+
 permissions:
   tokennotes.cmd:
     default: true
