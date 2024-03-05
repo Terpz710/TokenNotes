@@ -12,15 +12,10 @@ use pocketmine\item\VanillaItems;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 
-use Terpz710\TokenNotes\Loader;
-
 class TokenNoteCommand extends Command {
 
-    private $plugin;
-
-    public function __construct(Loader $plugin) {
+    public function __construct() {
         parent::__construct("banknote", "Create a bank note with a specified value", "/banknote <amount>");
-        $this->plugin = $plugin;
         $this->setPermission("tokennotes.cmd");
     }
 
