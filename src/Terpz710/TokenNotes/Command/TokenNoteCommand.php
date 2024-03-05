@@ -14,8 +14,6 @@ use Terpz710\TokenNotes\Loader;
 
 class TokenNoteCommand extends Command {
 
-    private $plugin;
-
     public function __construct(Loader $plugin) {
         parent::__construct("banknote", "Create a bank note with a specified value", "/banknote <amount>");
         $this->plugin = $plugin;
@@ -51,7 +49,7 @@ class TokenNoteCommand extends Command {
     }
 
     private function createBankNoteItem(int $value): ?Item {
-        $bankNote = Item::get(VanillaItems::PAPER, 0, 1);
+        $bankNote = VanillaItems::PAPER();
         $bankNote->setCustomName("Bank Note $" . $value);
         $bankNote->setLore(["Value: $" . $value]);
         return $bankNote;
