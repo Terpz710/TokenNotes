@@ -8,7 +8,6 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\IntTag;
 
 use Terpz710\TokenNotes\Command\TokenNoteCommand;
 use Terpz710\TokensAPI\API\TokenAPI;
@@ -39,14 +38,14 @@ class Loader extends PluginBase implements Listener {
         $item = $event->getItem();
         
         $nbt = $item->getNamedTag();
-        if ($nbt !== null && $nbt instanceof CompoundTag && $nbt->getTag("Value")) {
+        if ($nbt instanceof CompoundTag && $nbt->getTag("Value")) {
             $value = $nbt->getInt("Value");
             $tokenAPI = $this->getTokenAPI();
             if ($tokenAPI !== null) {
                 $tokenAPI->addToken($player, $value);
                 $player->sendMessage("Redeemed §e$value tokens§f from the bank note!");
                 $player->getInventory()->removeItem($item);
-                $event->setCancelled();
+                $event->cancel();
             }
         }
     }
