@@ -7,7 +7,9 @@ namespace Terpz710\TokenNotes;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
-use pocketmine\item\VanillaItems;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
+
 use Terpz710\TokenNotes\Command\TokenNoteCommand;
 use Terpz710\TokensAPI\API\TokenAPI;
 use Terpz710\TokensAPI\Tokens;
@@ -36,17 +38,15 @@ class Loader extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $item = $event->getItem();
         
-        if ($item->getTypeId() === VanillaItems::PAPER() && $item->getCustomName() && strpos($item->getCustomName(), "Bank Note $") !== false) {
-            $lore = $item->getLore();
-            if ($lore !== null && preg_match('/^Value: \$([\d]+)$/', $lore[0], $matches)) {
-                $value = (int) $matches[1];
-                $tokenAPI = $this->getTokenAPI();
-                if ($tokenAPI !== null) {
-                    $tokenAPI->addToken($player, $value);
-                    $player->sendMessage("Redeemed §e$value tokens§f from the bank note!");
-                    $player->getInventory()->removeItem($item);
-                    $event->cancel();
-                }
+        $nbt = $item->getNamedTag("BankNote");
+        if ($nbt !== null && $nbt instanceof CompoundTag && $nbt->hasTag("Value", IntTag::class)) {
+            $value = $nbt->getInt("Value");
+            $tokenAPI = $this->getTokenAPI();
+            if ($tokenAPI !== null) {
+                $tokenAPI->addToken($player, $value);
+                $player->sendMessage("Redeemed §e$value tokens§f from the bank note!");
+                $player->getInventory()->removeItem($item);
+                $event->cancel();
             }
         }
     }
