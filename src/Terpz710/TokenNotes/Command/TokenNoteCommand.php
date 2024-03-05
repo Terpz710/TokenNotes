@@ -47,7 +47,7 @@ class TokenNoteCommand extends Command {
         }
     }
 
-    private function createBankNoteItem(int $value): ?Item {
+    private function createBankNoteItem(int $value) {
         $bankNote = VanillaItems::PAPER();
         $bankNote->setCustomName("Bank Note $" . $value);
         $nbt = new CompoundTag("", [
