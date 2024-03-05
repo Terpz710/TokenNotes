@@ -46,7 +46,7 @@ class Loader extends PluginBase implements Listener {
                 $tokenAPI->addToken($player, $value);
                 $player->sendMessage("Redeemed §e$value tokens§f from the bank note!");
                 $player->getInventory()->removeItem($item);
-                $event->cancel();
+                $event->setCancelled();
             }
         }
     }
