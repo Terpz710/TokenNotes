@@ -39,7 +39,7 @@ class Loader extends PluginBase implements Listener {
         $item = $event->getItem();
         
         $nbt = $item->getNamedTag();
-        if ($nbt !== null && $nbt instanceof CompoundTag && $nbt->getTag("Value", IntTag::class)) {
+        if ($nbt !== null && $nbt instanceof CompoundTag && $nbt->getTag("Value")) {
             $value = $nbt->getInt("Value");
             $tokenAPI = $this->getTokenAPI();
             if ($tokenAPI !== null) {
