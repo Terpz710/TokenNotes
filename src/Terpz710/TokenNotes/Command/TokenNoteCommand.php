@@ -9,6 +9,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
 
 use Terpz710\TokenNotes\Loader;
 
@@ -51,7 +53,12 @@ class TokenNoteCommand extends Command {
     private function createBankNoteItem(int $value): ?Item {
         $bankNote = VanillaItems::PAPER();
         $bankNote->setCustomName("Bank Note $" . $value);
-        $bankNote->setLore(["Value: $" . $value]);
+        $nbt = new CompoundTag("", [
+            "BankNote" => new CompoundTag("BankNote", [
+                "Value" => new IntTag("Value", $value)
+            ])
+        ]);
+        $bankNote->setNamedTag($nbt);
         return $bankNote;
     }
 }
