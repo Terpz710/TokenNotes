@@ -41,7 +41,7 @@ class TokenNoteCommand extends Command implements PluginOwned {
             return true;
         }
 
-        $targetPlayer = $sender; // The sender is now the target player
+        $targetPlayer = $sender;
         $tokenAmount = (int)$args[0];
 
         if ($tokenAmount <= 0) {
